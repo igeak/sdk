@@ -6,6 +6,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.igeak.dial.kit.DialKit;
+import com.igeak.dial.kit.DialKit.AQIChangeObserver;
+import com.igeak.dial.kit.DialKit.WeatherChangeObserver;
+import com.igeak.dial.kit.DialKit.WeatherDegreeChangeObserver;
 import com.igeak.dial.kit.DialTicker;
 import com.igeak.dial.kit.DialTicker.TimeChangeListener;
 
@@ -15,13 +18,17 @@ public class ClockPlugin {
     TextView hour1 ;
     TextView second1 ;
     TextView minute1 ;
-    
+    TextView aqiView;
+    TextView weatherView;
+    TextView weatherDegreeView ;
+    Context mContext;
     public View createClockView(Context context) {
+        mContext = context;
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.activity_main, null);
-        TextView aqiView = (TextView) view.findViewById(R.id.aqi);
-        TextView weatherView = (TextView) view.findViewById(R.id.weather);
-        TextView weatherDegreeView = (TextView) view.findViewById(R.id.weather_degree);
+        aqiView = (TextView) view.findViewById(R.id.aqi);
+        weatherView = (TextView) view.findViewById(R.id.weather);
+        weatherDegreeView = (TextView) view.findViewById(R.id.weather_degree);
         TextView weatherCityView = (TextView) view.findViewById(R.id.weather_city);
         TextView windLevelView = (TextView) view.findViewById(R.id.wind_level);
         TextView windDirectionView = (TextView) view.findViewById(R.id.wind_direction);
@@ -55,6 +62,39 @@ public class ClockPlugin {
             
         });
         mDialTicker.start();
+        
+        // listen for aqi change 
+        DialKit.registerAQIChangeObserver(context , 
+                new AQIChangeObserver(){
+
+                    @Override
+                    public void onNewData(int newAQI) {
+                        int aqi = DialKit.getAqi(mContext);
+                        aqiView.setText(Integer.toString(aqi));
+                    }
+            
+        });
+        
+        DialKit.registerWeatherChangeObserver(context , 
+                new WeatherChangeObserver(){
+
+                    @Override
+                    public void onNewData(String weather) {
+                        weatherView.setText(weather);
+                       
+                    }
+            
+        });
+        
+        DialKit.registerWeatherDegreeChangeObserver(context , 
+                new WeatherDegreeChangeObserver(){
+
+                    @Override
+                    public void onNewData(String newDegree) {
+                        weatherDegreeView.setText(newDegree);
+                    }
+            
+        });
         return view;
     }
 

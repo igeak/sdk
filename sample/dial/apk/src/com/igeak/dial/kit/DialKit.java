@@ -156,8 +156,8 @@ public class DialKit {
     }
     
     public static abstract class AQIChangeObserver extends ContentObserver{
-        public AQIChangeObserver(Handler handler) {
-            super(handler);
+        public AQIChangeObserver() {
+            super(new Handler());
        }
         @Override
         public void onChange(boolean selfChange) {
@@ -166,8 +166,8 @@ public class DialKit {
         public abstract void onNewData(int newAQI);
     }
     public static abstract class WeatherChangeObserver extends ContentObserver{
-        public WeatherChangeObserver(Handler handler) {
-            super(handler);
+        public WeatherChangeObserver() {
+            super(new Handler());
        }
         @Override
         public void onChange(boolean selfChange) {
@@ -176,8 +176,8 @@ public class DialKit {
         public abstract void onNewData(String newWeather);
     }
     public static abstract class WeatherDegreeChangeObserver extends ContentObserver{
-        public WeatherDegreeChangeObserver(Handler handler) {
-            super(handler);
+        public WeatherDegreeChangeObserver() {
+            super(new Handler());
        }
         @Override
         public void onChange(boolean selfChange) {
