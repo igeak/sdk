@@ -65,18 +65,17 @@ public class ClockPlugin {
         
         // listen for aqi change 
         DialKit.registerAQIChangeObserver(context , 
-                new AQIChangeObserver(){
+                new AQIChangeObserver(context){
 
                     @Override
                     public void onNewData(int newAQI) {
-                        int aqi = DialKit.getAqi(mContext);
-                        aqiView.setText(Integer.toString(aqi));
+                        aqiView.setText(Integer.toString(newAQI));
                     }
             
         });
         
         DialKit.registerWeatherChangeObserver(context , 
-                new WeatherChangeObserver(){
+                new WeatherChangeObserver(context){
 
                     @Override
                     public void onNewData(String weather) {
@@ -87,7 +86,7 @@ public class ClockPlugin {
         });
         
         DialKit.registerWeatherDegreeChangeObserver(context , 
-                new WeatherDegreeChangeObserver(){
+                new WeatherDegreeChangeObserver(context){
 
                     @Override
                     public void onNewData(String newDegree) {

@@ -156,32 +156,45 @@ public class DialKit {
     }
     
     public static abstract class AQIChangeObserver extends ContentObserver{
-        public AQIChangeObserver() {
+        private Context mContext;
+        public AQIChangeObserver(Context context) {
             super(new Handler());
+            mContext = context;
        }
         @Override
         public void onChange(boolean selfChange) {
             super.onChange(selfChange);
+            // !!!
+            int newAQI = getAqi(mContext);
+            onNewData(newAQI);
         }
         public abstract void onNewData(int newAQI);
     }
     public static abstract class WeatherChangeObserver extends ContentObserver{
-        public WeatherChangeObserver() {
+        private Context mContext;
+        public WeatherChangeObserver(Context context) {
             super(new Handler());
+            mContext = context;
        }
         @Override
         public void onChange(boolean selfChange) {
             super.onChange(selfChange);
+            String newWeather = getWeather(mContext);
+            onNewData(newWeather);
         }
         public abstract void onNewData(String newWeather);
     }
     public static abstract class WeatherDegreeChangeObserver extends ContentObserver{
-        public WeatherDegreeChangeObserver() {
+        private Context mContext;
+        public WeatherDegreeChangeObserver(Context context) {
             super(new Handler());
+            mContext = context;
        }
         @Override
         public void onChange(boolean selfChange) {
             super.onChange(selfChange);
+            String newWeatherDegree = getWeatherDegree(mContext);
+            onNewData(newWeatherDegree);
         }
         public abstract void onNewData(String newWeatherDegree);
     }
