@@ -8,6 +8,7 @@ public class DialTicker {
 
     private Time mCalendar;
     private TimeChangeListener mTimeChangeListener;
+    private final Handler mHandler = new Handler();
     
     public DialTicker(TimeChangeListener listener){
         mCalendar = new Time();
@@ -23,12 +24,14 @@ public class DialTicker {
     }
     
     private final Runnable mTicker = new Runnable() {
+        
         public void run() {
             onTimeChanged();
             long now = SystemClock.uptimeMillis();
             long next = now + (1000 - now % 1000);
             mHandler.postAtTime(mTicker, next);
         }
+        
     };
     
     private void onTimeChanged() {
@@ -46,8 +49,6 @@ public class DialTicker {
             mTimeChangeListener.onChange(resHour, resMinutes, resSeconds);
         }
     }
-    
-    private final Handler mHandler = new Handler();
     
     public interface TimeChangeListener{
         void onChange(float hour, float minute, float second);
