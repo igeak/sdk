@@ -15,11 +15,11 @@ public class DialTicker {
         mTimeChangeListener = listener;
     }
     
-    public void start(){
+    public void start() {
         mTicker.run();
     }
     
-    public void stop(){
+    public void stop() {
         mHandler.removeCallbacks(mTicker);
     }
     
@@ -45,12 +45,12 @@ public class DialTicker {
         float resMinutes = minute + resSeconds / 60.0f;
         float resHour = hour + resMinutes / 60.0f;
         
-        if(mTimeChangeListener != null){
+        if(mTimeChangeListener != null) {
             mTimeChangeListener.onChange(resHour, resMinutes, resSeconds);
         }
     }
     
-    public interface TimeChangeListener{
+    public interface TimeChangeListener {
         void onChange(float hour, float minute, float second);
     }
     
