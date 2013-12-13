@@ -1,8 +1,6 @@
 package com.igeak.dial.kit;
 
 public class Constants {
-    
-    
     // const for weather api getWeather
     public static final String WEATHER_NONE = "none";
     public static final String WEATHER_RAIN = "rain";
@@ -17,6 +15,4 @@ public class Constants {
     public static final String WEATHER_ICY = "icy";
     public static final String WEATHER_DUST = "dust";
     public static final String WEATHER_WINDY = "windy";
-    
-    
 }
