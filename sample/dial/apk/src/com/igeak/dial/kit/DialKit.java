@@ -85,6 +85,7 @@ public class DialKit {
         }
         return weatherDegree;
     }
+    
     public static String getWindLevel(final Context context) {
         String  windLevel = "";
         Cursor cursor = null;
@@ -103,6 +104,7 @@ public class DialKit {
         }
         return windLevel;
     }
+    
     public static String getWindDirection(final Context context) {
         String  windDirection = "";
         Cursor cursor = null;
@@ -121,8 +123,8 @@ public class DialKit {
         }
         return windDirection;
     }
-    public static ContentObserver registerAQIChangeObserver(
-            final Context context,
+    
+    public static ContentObserver registerAQIChangeObserver(final Context context,
             AQIChangeObserver observer){
         if(observer == null) {
             return null;
@@ -132,8 +134,8 @@ public class DialKit {
                 false, observer);
         return observer;
     }
-    public static ContentObserver registerWeatherChangeObserver(
-            final Context context,
+    
+    public static ContentObserver registerWeatherChangeObserver(final Context context,
             WeatherChangeObserver observer){
         if(observer == null) {
             return null;
@@ -143,6 +145,7 @@ public class DialKit {
                 false, observer);
         return observer;
     }
+    
     public static ContentObserver registerWeatherDegreeChangeObserver(
             final Context context,
             WeatherDegreeChangeObserver observer){
@@ -157,45 +160,54 @@ public class DialKit {
     
     public static abstract class AQIChangeObserver extends ContentObserver{
         private Context mContext;
+        
         public AQIChangeObserver(Context context) {
             super(new Handler());
             mContext = context;
        }
+       
         @Override
         public void onChange(boolean selfChange) {
             super.onChange(selfChange);
-            // !!!
             int newAQI = getAqi(mContext);
             onNewData(newAQI);
         }
         public abstract void onNewData(int newAQI);
     }
+    
     public static abstract class WeatherChangeObserver extends ContentObserver{
         private Context mContext;
         public WeatherChangeObserver(Context context) {
             super(new Handler());
             mContext = context;
        }
+       
         @Override
         public void onChange(boolean selfChange) {
             super.onChange(selfChange);
             String newWeather = getWeather(mContext);
             onNewData(newWeather);
         }
+        
         public abstract void onNewData(String newWeather);
     }
+    
     public static abstract class WeatherDegreeChangeObserver extends ContentObserver{
         private Context mContext;
+        
         public WeatherDegreeChangeObserver(Context context) {
             super(new Handler());
             mContext = context;
        }
+       
         @Override
         public void onChange(boolean selfChange) {
             super.onChange(selfChange);
             String newWeatherDegree = getWeatherDegree(mContext);
             onNewData(newWeatherDegree);
         }
+        
         public abstract void onNewData(String newWeatherDegree);
     }
+    
 }
