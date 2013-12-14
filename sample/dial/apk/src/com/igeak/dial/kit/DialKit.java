@@ -30,14 +30,14 @@ public class DialKit {
     }
 
     public static String getWeatherCity(final Context context) {
-        String  weather = "";
+        String  weatherCity = "";
         Cursor cursor = null;
         try {
             Uri uri = Uri.parse(
                     "content://com.igeak.clockkit.provider/weather_city");
             cursor = context.getContentResolver().query(uri, null, null, null, null);
             if (cursor != null && cursor.moveToFirst()) {
-                weather = cursor.getString(cursor.getColumnIndex("weather_city"));
+                weatherCity = cursor.getString(cursor.getColumnIndex("weather_city"));
             }
         } catch (Exception e) {
         } finally {
@@ -45,7 +45,7 @@ public class DialKit {
                 cursor.close();
             }
         }
-        return weather;
+        return weatherCity;
     }
     
     public static String getWeather(final Context context) {
@@ -68,14 +68,14 @@ public class DialKit {
     }
     
     public static String getWeatherDegree(final Context context) {
-        String  weather = "";
+        String  weatherDegree = "";
         Cursor cursor = null;
         try {
             Uri uri = Uri.parse(
                     "content://com.igeak.clockkit.provider/weather_degree");
             cursor = context.getContentResolver().query(uri, null, null, null, null);
             if (cursor != null && cursor.moveToFirst()) {
-                weather = cursor.getString(cursor.getColumnIndex("weather_degree"));
+                weatherDegree = cursor.getString(cursor.getColumnIndex("weather_degree"));
             }
         } catch (Exception e) {
         } finally {
@@ -83,17 +83,17 @@ public class DialKit {
                 cursor.close();
             }
         }
-        return weather;
+        return weatherDegree;
     }
     public static String getWindLevel(final Context context) {
-        String  weather = "";
+        String  windLevel = "";
         Cursor cursor = null;
         try {
             Uri uri = Uri.parse(
                     "content://com.igeak.clockkit.provider/wind_level");
             cursor = context.getContentResolver().query(uri, null, null, null, null);
             if (cursor != null && cursor.moveToFirst()) {
-                weather = cursor.getString(cursor.getColumnIndex("wind_level"));
+                windLevel = cursor.getString(cursor.getColumnIndex("wind_level"));
             }
         } catch (Exception e) {
         } finally {
@@ -101,17 +101,17 @@ public class DialKit {
                 cursor.close();
             }
         }
-        return weather;
+        return windLevel;
     }
     public static String getWindDirection(final Context context) {
-        String  weather = "";
+        String  windDirection = "";
         Cursor cursor = null;
         try {
             Uri uri = Uri.parse(
                     "content://com.igeak.clockkit.provider/wind_direction");
             cursor = context.getContentResolver().query(uri, null, null, null, null);
             if (cursor != null && cursor.moveToFirst()) {
-                weather = cursor.getString(cursor.getColumnIndex("wind_direction"));
+                windDirection = cursor.getString(cursor.getColumnIndex("wind_direction"));
             }
         } catch (Exception e) {
         } finally {
@@ -119,7 +119,7 @@ public class DialKit {
                 cursor.close();
             }
         }
-        return weather;
+        return windDirection;
     }
     public static ContentObserver registerAQIChangeObserver(
             final Context context,
