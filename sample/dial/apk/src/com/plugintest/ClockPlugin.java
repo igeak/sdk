@@ -50,11 +50,11 @@ public class ClockPlugin {
         hour1 = (TextView) view.findViewById(R.id.hour);
         second1 = (TextView) view.findViewById(R.id.second);
         minute1 = (TextView) view.findViewById(R.id.minute);
-        mDialTicker = new DialTicker(new TimeChangeListener(){
+        /*mDialTicker = new DialTicker(new TimeChangeListener(){
 
             @Override
             public void onChange(float hour, float minute, float second) {
-               //
+              
                 hour1.setText(Float.toString(hour));
                 minute1.setText(Float.toString(minute));
                 second1.setText(Float.toString(second));
@@ -62,7 +62,7 @@ public class ClockPlugin {
             
         });
         mDialTicker.start();
-        
+        */
         // listen for aqi change 
         DialKit.registerAQIChangeObserver(context , 
                 new AQIChangeObserver(context){
