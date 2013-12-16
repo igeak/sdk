@@ -9,12 +9,9 @@ import com.igeak.dial.kit.DialKit;
 import com.igeak.dial.kit.DialKit.AQIChangeObserver;
 import com.igeak.dial.kit.DialKit.WeatherChangeObserver;
 import com.igeak.dial.kit.DialKit.WeatherDegreeChangeObserver;
-import com.igeak.dial.kit.DialTicker;
-import com.igeak.dial.kit.DialTicker.TimeChangeListener;
 
 public class ClockPlugin {
     
-    DialTicker mDialTicker;
     TextView hour1 ;
     TextView second1 ;
     TextView minute1 ;
@@ -50,20 +47,8 @@ public class ClockPlugin {
         hour1 = (TextView) view.findViewById(R.id.hour);
         second1 = (TextView) view.findViewById(R.id.second);
         minute1 = (TextView) view.findViewById(R.id.minute);
-        /*mDialTicker = new DialTicker(new TimeChangeListener(){
-
-            @Override
-            public void onChange(float hour, float minute, float second) {
-              
-                hour1.setText(Float.toString(hour));
-                minute1.setText(Float.toString(minute));
-                second1.setText(Float.toString(second));
-            }
-            
-        });
-        mDialTicker.start();
-        */
-        // listen for aqi change 
+        
+	// listen for aqi change 
         DialKit.registerAQIChangeObserver(context , 
                 new AQIChangeObserver(context){
 
